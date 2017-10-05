@@ -34,7 +34,8 @@ hard_answers=["engineering","mumbai","tata","sierra","jaguar"]
 
 
 def game_difficulty():
-    ''' the user is prompted to enter the level of difficulty at which he wants to play'''
+    ''' the user is prompted to enter the level of difficulty at which he wants to play
+    the function prints the levels available and asks the user to enter one of them or exit the game'''
 
     difficulty = raw_input("""\n    Welcome to the Game
     Enter 1,2,3 based on difficulty you want to play at:
@@ -64,7 +65,15 @@ def game_difficulty():
 
 
 def begin_game(question, answer_tray):
-    #this function takes the question and the corresponding answer list as the input
+    '''this function takes the question and the corresponding answer list as the input
+
+    arguments:
+    question-- the question para that follows according to the difficulty level chosen by the user
+    answer tray--- the answers of the chosen paragraph
+
+    output:
+    the function begins the game \, evaluates each answer and the prints congratulations at the end
+    when all the questions have been answered correctly'''
     blanks_total = 5
     blank_index_no = 0
 
@@ -76,12 +85,14 @@ def begin_game(question, answer_tray):
             #checking is users answer matches with the actual answer
 
             question = update(question,user_answer,blank_index_no)
-            blank_index_no = blank_index_no + 1
+            blank_index_no = blank_index_no + 1   
+            '''incrementing blank_no_index to move to the next blank, after 
+            the previous blank has been corrrectly answered'''
             
         else:
             print '\nWrong Answer. Try Again\n\n\n\n\n'
             
-    
+    print question
     print "\n\n*****************Congratulations on completing the game*****************\n\n"
     game_difficulty()
  
@@ -89,7 +100,18 @@ def begin_game(question, answer_tray):
 
 
 def update(question,user_answer,blank_index_no):
-    # to update the question paragraph. After the anser has been checked the blank is replaced with the answer entered by the user
+    '''to update the question paragraph. After the anser has been checked the blank is replaced 
+     the answer entered by the user
+
+     arguments:
+     question-- based on difficulty level
+     user_answer---answer entered by the user
+     blank_index_no-- the blank for which the answer has been submitted
+
+
+     output:
+     it returns the question paragraph after replacing the blank with the corrresponding  answer'''
+
     question = question.split()
     location = question.index("____" + str(blank_index_no + 1) + "____")
     question[location] = question[location].replace('____'+str(blank_index_no + 1)+'____',user_answer)
